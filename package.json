@@ -1,0 +1,28 @@
+{
+	"name": "astro-nannou-template",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"dev:rsw": "concurrently 'rsw watch' 'astro dev'",
+		"build:rsw": "rsw build && tsc && astro build",
+		"rsw": "rsw",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"astro": "^1.6.15",
+		"hello-world": "link:/Users/ju/Repositories/playground/astro-nannou-template/crates/hello-world/pkg",
+		"nannou-1": "link:/Users/ju/Repositories/playground/astro-nannou-template/crates/nannou-1/pkg"
+	},
+	"devDependencies": {
+		"concurrently": "^7.6.0",
+		"prettier": "^2.8.1",
+		"prettier-plugin-astro": "^0.7.0",
+		"vite-plugin-rsw": "^2.0.11",
+		"webdev-configs": "^1.2.0"
+	}
+}
