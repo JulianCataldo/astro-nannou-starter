@@ -14,9 +14,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"astro": "^1.6.15",
-		"hello-world": "link:/Users/ju/Repositories/playground/astro-nannou-template/crates/hello-world/pkg",
-		"nannou-1": "link:/Users/ju/Repositories/playground/astro-nannou-template/crates/nannou-1/pkg"
+		"astro": "^1.6.15"
 	},
 	"devDependencies": {
 		"concurrently": "^7.6.0",
