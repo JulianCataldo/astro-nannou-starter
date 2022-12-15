@@ -8,7 +8,7 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"dev:rsw": "concurrently 'rsw watch' 'astro dev'",
-		"build:rsw": "rsw build && tsc && astro build",
+		"build:rsw": "rsw build && astro build",
 		"rsw": "rsw",
 		"preview": "astro preview",
 		"astro": "astro"
