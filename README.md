@@ -20,9 +20,11 @@ pnpm build:rsw
 
 ## References
 
-- https://github.com/tomoyanonymous/nannou-web-template (Webpack)
+- https://github.com/tomoyanonymous/nannou-web-template (w. Webpack)
 - https://github.com/rwasm/vite-plugin-rsw
 - https://github.com/rwasm/rsw-rs
+- https://nannou.cc
+- https://github.com/rustwasm/wasm-pack
 
 # Astro Starter Kit: Minimal
 
