@@ -1,3 +1,22 @@
+# _Astro_ x _Nannou_ Starter
+
+```
+# 1.
+cargo install rsw
+
+# 2.
+pnpm i
+
+# 3.
+pnpm dev:rsw
+```
+
+## References
+
+- https://github.com/tomoyanonymous/nannou-web-template (Webpack)
+- https://github.com/rwasm/vite-plugin-rsw
+- https://github.com/rwasm/rsw-rs
+
 # Astro Starter Kit: Minimal
 
 ```
