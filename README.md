@@ -7,9 +7,16 @@ cargo install rsw
 # 2.
 pnpm i
 
-# 3.
+# 3a.
 pnpm dev:rsw
+
+# 3b.
+pnpm build:rsw
 ```
+
+## 🍾 Result
+
+<img width="1824" alt="astro-nannou-starter-1" src="https://user-images.githubusercontent.com/603498/207852520-eb8c30b8-7a29-4b75-85cc-a00a41bfbb32.png">
 
 ## References
 
