@@ -4,12 +4,12 @@ on:
   push:
     branches: [master]
 
-  # workflow_dispatch:
+  workflow_dispatch:
 
-# permissions:
-#   contents: read
-#   pages: write
-#   id-token: write
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -26,19 +26,20 @@ jobs:
 
       # ————————————————————————————————————————————————————————————————————————
 
-      - name: Setup Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-
       - name: Cache Rust, Cargo installations
-        uses: actions/cache@v2
+        # uses: actions/cache@v3
+        uses: actions/cache@v3
         with:
           path: |
             ~/.rustup/toolchains
             ~/.rustup/update-hashes
             ~/.rustup/settings.toml
           key: toolchain-${{ hashFiles('rust-toolchain') }}
+
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
 
       - name: Install Wasm-pack
         uses: jetli/wasm-pack-action@v0.4.0
@@ -85,8 +86,11 @@ jobs:
         # `NODE_ENV=production` to exclude dev. dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Astro Website + Crates
-        run: pnpm build:rsw
+      - name: Build Crates
+        run: rsw build
+
+      - name: Build Astro Website
+        run: pnpm build
 
   deploy:
     name: Deploy
