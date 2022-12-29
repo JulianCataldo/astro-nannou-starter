@@ -9,7 +9,7 @@
 
   const id = params.get('id') ?? 1;
 
-  await import(`../../crates/nannou-${id}/pkg`).then(
+  await import(`../../crates/nannou-${id}/pkg/nannou_web_test.js`).then(
     async ({ default: nannou }) => {
       await nannou().then((s) => {
         s.main_web();

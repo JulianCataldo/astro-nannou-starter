@@ -7,7 +7,7 @@ pub struct Model;
 
 fn update(_app: &App, _model: &mut Model, _update: Update) {}
 
-fn view(app: &App, model: &Model, frame: Frame) {
+fn view(app: &App, _model: &Model, frame: Frame) {
 	let draw = app.draw();
 	let r = app.window_rect();
 	draw.background().color(BLACK);

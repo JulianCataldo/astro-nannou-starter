@@ -10,11 +10,11 @@ edition = "2018"
 resolver = "2" 
 
 [[bin]]
-name = "nannou_web_compat_2"
+name = "nannou_web_compat"
 path = "src/main.rs"
 
 [lib]
-name = "nannou_web_test_2"
+name = "nannou_web_test"
 path = "src/lib.rs"
 crate-type = ["cdylib"]
 
