@@ -9,48 +9,42 @@ fn update(_app: &App, _model: &mut Model, _update: Update) {}
 
 fn view(app: &App, _model: &Model, frame: Frame) {
 	// Begin drawing
-	let win = app.window_rect();
-	let t = app.time;
 	let draw = app.draw();
 
 	// Clear the background to blue.
-	draw.background().color(BLACK);
+	draw.background().color(CORNFLOWERBLUE);
 
-	// Create an `ngon` of points.
-	let n_points = 5;
-	let radius = win.w().min(win.h()) * 0.25;
-	let points = (0..n_points).map(|i| {
-		let fract = i as f32 / n_points as f32;
-		let phase = fract;
-		let x = radius * (TAU * phase).cos();
-		let y = radius * (TAU * phase).sin();
-		pt2(x, y)
-	});
-	draw.polygon()
-		.x(-win.w() * 0.25)
-		.color(WHITE)
-		.rotate(-t * 0.1)
-		.stroke(PINK)
-		.stroke_weight(20.0)
-		.join_round()
-		.points(points);
+	// Draw a purple triangle in the top left half of the window.
+	let win = app.window_rect();
+	draw.tri()
+		.points(win.bottom_left(), win.top_left(), win.top_right())
+		.color(VIOLET);
 
-	// Do the same, but give each point a unique colour.
-	let n_points = 7;
-	let points_colored = (0..n_points).map(|i| {
-		let fract = i as f32 / n_points as f32;
-		let phase = fract;
-		let x = radius * (TAU * phase).cos();
-		let y = radius * (TAU * phase).sin();
-		let r = fract;
-		let g = 1.0 - fract;
-		let b = (0.5 + fract) % 1.0;
-		(pt2(x, y), rgb(r, g, b))
-	});
-	draw.polygon()
-		.x(win.w() * 0.25)
-		.rotate(t * 0.2)
-		.points_colored(points_colored);
+	// Draw an ellipse to follow the mouse.
+	let t = app.time;
+	draw.ellipse()
+		.x_y(app.mouse.x * t.cos(), app.mouse.y)
+		.radius(win.w() * 0.125 * t.sin())
+		.color(RED);
+
+	// Draw a line!
+	draw.line()
+		.weight(10.0 + (t.sin() * 0.5 + 0.5) * 90.0)
+		.caps_round()
+		.color(PALEGOLDENROD)
+		.points(win.top_left() * t.sin(), win.bottom_right() * t.cos());
+
+	// Draw a quad that follows the inverse of the ellipse.
+	draw.quad()
+		.x_y(-app.mouse.x, app.mouse.y)
+		.color(DARKGREEN)
+		.rotate(t);
+
+	// Draw a rect that follows a different inverse of the ellipse.
+	draw.rect()
+		.x_y(app.mouse.y, app.mouse.x)
+		.w(app.mouse.x * 0.25)
+		.hsv(t, 1.0, 1.0);
 
 	// Write the result of our drawing to the window's frame.
 	draw.to_frame(app, &frame).unwrap();

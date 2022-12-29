@@ -1,8 +1,8 @@
 use wasm_bindgen::prelude::wasm_bindgen;
 
 mod sketch;
-use sketch::{run_app, Model};
 use async_std::task::block_on;
+use sketch::{run_app, Model};
 
 // web app entry_point
 #[wasm_bindgen]
