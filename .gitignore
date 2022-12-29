@@ -1,4 +1,7 @@
+.dev*
+
 # WASM
+target
 .rsw
 crates/*/pkg/
 crates/*/target/
