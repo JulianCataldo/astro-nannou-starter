@@ -1,5 +1,7 @@
 # _Astro_ x _Nannou_ Starter
 
+https://user-images.githubusercontent.com/603498/210013817-1866e0bb-427f-444b-92cb-172f94d26cb0.mov
+
 ```
 # 0a. Rust
 open https://www.rust-lang.org/tools/install
@@ -20,7 +22,7 @@ pnpm dev:rsw
 pnpm build:rsw
 ```
 
-See also the GitHub workflow: [./.github/workflows/release.yml](./.github/workflows/release.yml).  
+See also the full **GitHub workflow**: [./.github/workflows/release.yml](./.github/workflows/release.yml).  
 Can be tested locally with [Act, a GitHub workflow runner](https://github.com/nektos/act).
 
 ## 🍾 Result
