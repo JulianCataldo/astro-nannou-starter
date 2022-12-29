@@ -32,12 +32,17 @@ dir = "my-template"
 [[crates]]
 root = "crates"
 name = "hello-world"
-link = true
+# link = true
 
 [[crates]]
 root = "crates"
 name = "nannou-1"
-link = true
+# link = true
+
+[[crates]]
+root = "crates"
+name = "nannou-2"
+# link = true
 
 #! When there is only `name`, other fields will use the default configuration
 
