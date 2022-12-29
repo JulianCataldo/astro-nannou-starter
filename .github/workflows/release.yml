@@ -41,6 +41,7 @@ jobs:
         with:
           toolchain: stable
 
+      # Not cached ?
       - name: Install Wasm-pack
         uses: jetli/wasm-pack-action@v0.4.0
         with:

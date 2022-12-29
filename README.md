@@ -34,3 +34,8 @@ Can be tested locally with [Act, a GitHub workflow runner](https://github.com/ne
 - https://github.com/rwasm/rsw-rs
 - https://nannou.cc
 - https://github.com/rustwasm/wasm-pack
+
+## Would be nice to have
+
+- Dynamic sketch switcher
+- Multiple sketch per page (without iframe)
