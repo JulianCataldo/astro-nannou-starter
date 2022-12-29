@@ -1,16 +1,22 @@
 # _Astro_ x _Nannou_ Starter
 
 ```
-# 1.
+# 0a. Rust
+open https://www.rust-lang.org/tools/install
+
+# 0b. Wasm-pack
+open https://rustwasm.github.io/wasm-pack/installer/
+
+# 1. RSW
 cargo install rsw
 
-# 2.
+# 2. Node dependencies
 pnpm i
 
-# 3a.
+# 3a. Launch Astro + RSW (dev.)
 pnpm dev:rsw
 
-# 3b.
+# 3b. Build all
 pnpm build:rsw
 ```
 
