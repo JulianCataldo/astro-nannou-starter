@@ -1,4 +1,5 @@
 ---
+const ids = [1, 2];
 ---
 
 <html lang="en">
@@ -10,12 +11,35 @@
     <title>Astro</title>
   </head>
   <body>
-    <h1>Astro</h1>
+    <h1>
+      <a href="https://astro.build">Astro</a> + <a href="https://nannou.cc"
+        >Nannou</a
+      ><br />
+      <small
+        >(<a href="https://github.com/JulianCataldo/astro-nannou-starter"
+          >Repo.</a
+        >)
+      </small>
+    </h1>
+
+    <hr />
+
+    {ids.map((id) => <iframe src={`/nannou-embed?id=${id}`} />)}
   </body>
 </html>
 
-<script>
-  import nannou1 from 'nannou-1';
+<style>
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
 
-  (await nannou1()).main_web();
-</script>
+    text-align: center;
+  }
+
+  iframe {
+    border: none;
+    width: 1100px;
+    height: 900px;
+  }
+</style>

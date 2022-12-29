@@ -1,0 +1,19 @@
+---
+---
+
+<script>
+  const url = new URL(document.location.href);
+  const params = url.searchParams;
+
+  console.log(params);
+
+  const id = params.get('id') ?? 1;
+
+  await import(`../../crates/nannou-${id}/pkg`).then(
+    async ({ default: nannou }) => {
+      await nannou().then((s) => {
+        s.main_web();
+      });
+    },
+  );
+</script>
