@@ -20,7 +20,7 @@ pnpm dev:rsw
 pnpm build:rsw
 ```
 
-See also the GitHub workflow: [./.github/workflows/release.yml](./.github/workflows/release.yml).
+See also the GitHub workflow: [./.github/workflows/release.yml](./.github/workflows/release.yml).  
 Can be tested locally with [Act, a GitHub workflow runner](https://github.com/nektos/act).
 
 ## 🍾 Result
