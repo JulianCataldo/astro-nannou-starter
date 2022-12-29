@@ -1,4 +1,4 @@
-// https://github.com/nannou-org/nannou/blob/master/examples/draw/draw_arrow.rs
+// https://github.com/nannou-org/nannou/blob/master/examples/draw/draw_blend.rs
 
 use nannou::prelude::*;
 
@@ -13,40 +13,41 @@ fn view(app: &App, _model: &Model, frame: Frame) {
 	// Begin drawing
 	let draw = app.draw();
 
-	// Clear the background to blue.
-	draw.background().color(CORNFLOWERBLUE);
+	// Clear the background.
+	draw.background().color(BLACK);
 
-	// Draw a purple triangle in the top left half of the window.
 	let win = app.window_rect();
-	draw.tri()
-		.points(win.bottom_left(), win.top_left(), win.top_right())
-		.color(VIOLET);
-
-	// Draw an ellipse to follow the mouse.
 	let t = app.time;
-	draw.ellipse()
-		.x_y(app.mouse.x * t.cos(), app.mouse.y)
-		.radius(win.w() * 0.125 * t.sin())
-		.color(RED);
 
-	// Draw a line!
-	draw.line()
-		.weight(10.0 + (t.sin() * 0.5 + 0.5) * 90.0)
-		.caps_round()
-		.color(PALEGOLDENROD)
-		.points(win.top_left() * t.sin(), win.bottom_right() * t.cos());
+	// Decide on a number of points and a weight.
+	let n_points = 10;
+	let weight = 8.0;
+	let hz = ((app.mouse.x + win.right()) / win.w()).powi(4) * 1000.0;
+	let vertices = (0..n_points)
+			// A sine wave mapped to the range of the window.
+			.map(|i| {
+					let x = map_range(i, 0, n_points - 1, win.left(), win.right());
+					let fract = i as f32 / n_points as f32;
+					let amp = (t + fract * hz * TAU).sin();
+					let y = map_range(amp, -1.0, 1.0, win.bottom() * 0.75, win.top() * 0.75);
+					pt2(x, y)
+			})
+			.enumerate()
+			// Colour each vertex uniquely based on its index.
+			.map(|(i, p)| {
+					let fract = i as f32 / n_points as f32;
+					let r = (t + fract) % 1.0;
+					let g = (t + 1.0 - fract) % 1.0;
+					let b = (t + 0.5 + fract) % 1.0;
+					let rgba = srgba(r, g, b, 1.0);
+					(p, rgba)
+			});
 
-	// Draw a quad that follows the inverse of the ellipse.
-	draw.quad()
-		.x_y(-app.mouse.x, app.mouse.y)
-		.color(DARKGREEN)
-		.rotate(t);
-
-	// Draw a rect that follows a different inverse of the ellipse.
-	draw.rect()
-		.x_y(app.mouse.y, app.mouse.x)
-		.w(app.mouse.x * 0.25)
-		.hsv(t, 1.0, 1.0);
+	// Draw the polyline as a stroked path.
+	draw.polyline()
+			.weight(weight)
+			.join_round()
+			.points_colored(vertices);
 
 	// Write the result of our drawing to the window's frame.
 	draw.to_frame(app, &frame).unwrap();

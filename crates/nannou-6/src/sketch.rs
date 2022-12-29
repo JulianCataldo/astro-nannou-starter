@@ -1,4 +1,4 @@
-// https://github.com/nannou-org/nannou/blob/master/examples/draw/draw_arrow.rs
+// https://github.com/nannou-org/nannou/blob/master/examples/draw/draw_blend.rs
 
 use nannou::prelude::*;
 
@@ -11,42 +11,47 @@ fn update(_app: &App, _model: &mut Model, _update: Update) {}
 
 fn view(app: &App, _model: &Model, frame: Frame) {
 	// Begin drawing
+	let win = app.window_rect();
+	let t = app.time;
 	let draw = app.draw();
 
-	// Clear the background to blue.
-	draw.background().color(CORNFLOWERBLUE);
+	// Clear the background to black.
+	draw.background().color(BLACK);
 
-	// Draw a purple triangle in the top left half of the window.
-	let win = app.window_rect();
-	draw.tri()
-		.points(win.bottom_left(), win.top_left(), win.top_right())
-		.color(VIOLET);
+	// Use the mouse position to affect the frequency and amplitude.
+	let hz = map_range(app.mouse.x, win.left(), win.right(), 0.0, 100.0);
+	let amp = app.mouse.y;
 
-	// Draw an ellipse to follow the mouse.
-	let t = app.time;
-	draw.ellipse()
-		.x_y(app.mouse.x * t.cos(), app.mouse.y)
-		.radius(win.w() * 0.125 * t.sin())
-		.color(RED);
+	// Create an iterator yielding triangles for drawing a sine wave.
+	let tris = (1..win.w() as usize)
+			.flat_map(|i| {
+					let l_fract = (i - 1) as f32 / win.w();
+					let r_fract = i as f32 / win.w();
 
-	// Draw a line!
-	draw.line()
-		.weight(10.0 + (t.sin() * 0.5 + 0.5) * 90.0)
-		.caps_round()
-		.color(PALEGOLDENROD)
-		.points(win.top_left() * t.sin(), win.bottom_right() * t.cos());
+					// Map the vertices to the window.
+					let l_x = map_range(l_fract, 0.0, 1.0, win.left(), win.right());
+					let r_x = map_range(r_fract, 0.0, 1.0, win.left(), win.right());
+					let l_y = (t * hz + l_fract * hz * TAU).sin() * amp;
+					let r_y = (t * hz + r_fract * hz * TAU).sin() * amp;
 
-	// Draw a quad that follows the inverse of the ellipse.
-	draw.quad()
-		.x_y(-app.mouse.x, app.mouse.y)
-		.color(DARKGREEN)
-		.rotate(t);
+					// Produce this slice of the triangle as a quad.
+					let a = pt2(l_x, l_y);
+					let b = pt2(r_x, r_y);
+					let c = pt2(r_x, 0.0);
+					let d = pt2(l_x, 0.0);
+					geom::Quad([a, b, c, d]).triangles_iter()
+			})
+			.map(|tri| {
+					// Color the vertices based on their amplitude.
+					tri.map_vertices(|v| {
+							let y_fract = map_range(v.y.abs(), 0.0, win.top(), 0.0, 1.0);
+							let color = srgba(y_fract, 1.0 - y_fract, 1.0 - y_fract, 1.0);
+							(v.extend(0.0), color)
+					})
+			});
 
-	// Draw a rect that follows a different inverse of the ellipse.
-	draw.rect()
-		.x_y(app.mouse.y, app.mouse.x)
-		.w(app.mouse.x * 0.25)
-		.hsv(t, 1.0, 1.0);
+	// Draw the mesh!
+	draw.mesh().tris_colored(tris);
 
 	// Write the result of our drawing to the window's frame.
 	draw.to_frame(app, &frame).unwrap();

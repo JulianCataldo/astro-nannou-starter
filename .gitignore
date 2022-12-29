@@ -5,6 +5,7 @@ target
 .rsw
 crates/*/pkg/
 crates/*/target/
+crates/*/.vscode
 
 # build output
 dist/

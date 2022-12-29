@@ -44,6 +44,26 @@ root = "crates"
 name = "nannou-2"
 # link = true
 
+[[crates]]
+root = "crates"
+name = "nannou-3"
+# link = true
+
+[[crates]]
+root = "crates"
+name = "nannou-4"
+# link = true
+
+[[crates]]
+root = "crates"
+name = "nannou-5"
+# link = true
+
+[[crates]]
+root = "crates"
+name = "nannou-6"
+# link = true
+
 #! When there is only `name`, other fields will use the default configuration
 
 #! 📦 -------- package: rsw-hello --------
