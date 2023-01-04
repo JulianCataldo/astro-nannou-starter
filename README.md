@@ -33,7 +33,7 @@ pnpm build:rsw
 See also the full **GitHub workflow**: [./.github/workflows/release.yml](./.github/workflows/release.yml).  
 Can be tested locally with [Act, a GitHub workflow runner](https://github.com/nektos/act).
 
-## 🍾 Result
+## 🍾  Result
 
 <img width="1824" alt="astro-nannou-starter-1" src="https://user-images.githubusercontent.com/603498/207852520-eb8c30b8-7a29-4b75-85cc-a00a41bfbb32.png">
 
@@ -49,3 +49,7 @@ Can be tested locally with [Act, a GitHub workflow runner](https://github.com/ne
 
 - Dynamic sketch switcher
 - Multiple sketch per page (without iframe)
+
+---
+
+🔗  [JulianCataldo.com](https://www.juliancataldo.com/)
