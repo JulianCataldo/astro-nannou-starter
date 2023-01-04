@@ -2,23 +2,31 @@
 
 https://user-images.githubusercontent.com/603498/210013817-1866e0bb-427f-444b-92cb-172f94d26cb0.mov
 
+<div align="center">
+
+🕹  [**Try it** online!](https://juliancataldo.github.io/astro-nannou-starter/)
+
+</div>
+
+---
+
 ```
-# 0a. Rust
+# 0a. Rust language tools
 open https://www.rust-lang.org/tools/install
 
-# 0b. Wasm-pack
-open https://rustwasm.github.io/wasm-pack/installer/
+# 0b. wasm-pack
+open https://rustwasm.github.io/wasm-pack/installer
 
-# 1. RSW
+# 1. rsw = rs(rust) → w(wasm)
 cargo install rsw
 
-# 2. Node dependencies
+# 2. Install NodeJS dependencies
 pnpm i
 
-# 3a. Launch Astro + RSW (dev.)
+# 3a. Launch AstroJS + rsw (dev.)
 pnpm dev:rsw
 
-# 3b. Build all
+# 3b. Build all (prod.)
 pnpm build:rsw
 ```
 
